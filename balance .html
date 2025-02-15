@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Bank Balance</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #222;
+            color: white;
+            margin: 0;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+            position: relative;
+            z-index: 2;
+        }
+        input {
+            padding: 10px;
+            margin: 10px 0;
+            width: 80%;
+            border-radius: 5px;
+            border: none;
+            text-align: center;
+        }
+        .btn {
+            background: linear-gradient(45deg, #ff8c00, #ff3c00);
+            color: white;
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background 0.5s ease;
+            animation: pulse 1.5s infinite;
+            position: relative;
+            z-index: 2;
+        }
+        .btn:hover {
+            background: linear-gradient(45deg, #ff3c00, #ff8c00);
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .bubbles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .bubble {
+            position: absolute;
+            bottom: -10px;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            animation: floatUp linear infinite;
+        }
+        @keyframes floatUp {
+            from { transform: translateY(0); opacity: 1; }
+            to { transform: translateY(-100vh); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bubbles"></div>
+    <div class="container">
+        <h2>Check Your Bank Balance</h2>
+        <input type="text" placeholder="Enter Account Number" id="accountNumber">
+        <br>
+        <button class="btn" onclick="checkBalance()">Check Balance</button>
+        <button class="btn" onclick="resetForm()">Reset</button>
+        <button class="btn" onclick="viewTransactions()">Transaction History</button>
+    </div>
+    
+    <script>
+        function createBubbles() {
+            const bubbleContainer = document.querySelector('.bubbles');
+            for (let i = 0; i < 20; i++) {
+                let bubble = document.createElement('div');
+                bubble.classList.add('bubble');
+                let size = Math.random() * 30 + 10;
+                let position = Math.random() * 100;
+                let duration = Math.random() * 5 + 3;
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+                bubble.style.left = `${position}%`;
+                bubble.style.animationDuration = `${duration}s`;
+                bubbleContainer.appendChild(bubble);
+            }
+        }
+        createBubbles();
+        
+        function checkBalance() {
+            let account = document.getElementById("accountNumber").value;
+            if(account === "") {
+                alert("Please enter your account number.");
+            } else {
+                alert("Your balance is: $5,000"); // Placeholder balance
+            }
+        }
+        
+        function resetForm() {
+            document.getElementById("accountNumber").value = "";
+        }
+        
+        function viewTransactions() {
+            alert("Redirecting to transaction history...");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link Bank</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            height: 100vh;
+            background-color: #222;
+            overflow: hidden;
+            margin: 0;
+            padding-top: 50px;
+        }
+        .container {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        .btn {
+            background: linear-gradient(45deg, #ff8c00, #ff3c00);
+            color: white;
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background 0.5s ease;
+            animation: pulse 1.5s infinite;
+            position: relative;
+            z-index: 2;
+        }
+        .btn:hover {
+            background: linear-gradient(45deg, #ff3c00, #ff8c00);
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .bubbles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .bubble {
+            position: absolute;
+            bottom: -10px;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            animation: floatUp linear infinite;
+        }
+        @keyframes floatUp {
+            from { transform: translateY(0); opacity: 1; }
+            to { transform: translateY(-100vh); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="color: white;">Welcome to Link Bank</h1>
+        <button class="btn">Open Link Bank</button>
+    </div> 
+    <div><br>
+        <div class="btn-wrapper">
+            <a href="transactions.html">
+                <img src="2d.jpg" alt="History Icon" style="width: 50px; height: 50px; border-radius: 50%; cursor: pointer;">
+            </a>  
+            <span style="color: rgb(250, 250, 252); font-weight: bold;">Check Bank Balance</span>
+        </div>       
+    </div>
+    <div><br>
+        <a href="transactions.html">
+            <button class="btn">Transactions History</button>
+        </a> 
+        <a href="bill.html">
+            <button class="btn">Bill Payment & Recharge</button>
+        </a>    
+    </div>
+    <div class="bubbles"></div>
+    <script>
+        function createBubbles() {
+            const bubbleContainer = document.querySelector('.bubbles');
+            for (let i = 0; i < 20; i++) {
+                let bubble = document.createElement('div');
+                bubble.classList.add('bubble');
+                let size = Math.random() * 30 + 10;
+                let position = Math.random() * 100;
+                let duration = Math.random() * 5 + 3;
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+                bubble.style.left = `${position}%`;
+                bubble.style.animationDuration = `${duration}s`;
+                bubbleContainer.appendChild(bubble);
+            }
+        }
+        createBubbles();
+    </script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PayEase - Login & Register</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .container {
+            width: 100%;
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            position: relative;
+            animation: slideIn 1s ease-in-out;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .form-group label {
+            font-weight: bold;
+            color: #333;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #007bff;
+            border-radius: 8px;
+            outline: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+        .form-group input:focus {
+            border-color: #ff8c00;
+            box-shadow: 0px 0px 8px rgba(255, 140, 0, 0.7);
+        }
+        .btn {
+            width: 100%;
+            background: linear-gradient(135deg, #ff8c00, #ff3c00);
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: 0.3s;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .btn:hover {
+            background: linear-gradient(135deg, #ff3c00, #c00);
+        }
+        .toggle-link {
+            margin-top: 10px;
+            color: #007bff;
+            cursor: pointer;
+            display: inline-block;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .toggle-link:hover {
+            color: #ff8c00;
+        }
+        .header-logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ff8c00;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .floating-bubbles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .bubble {
+            position: absolute;
+            bottom: -50px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            animation: floatUp 10s infinite ease-in-out;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-bubbles">
+        <div class="bubble" style="left: 10%; width: 30px; height: 30px; animation-duration: 7s;"></div>
+        <div class="bubble" style="left: 50%; width: 50px; height: 50px; animation-duration: 9s;"></div>
+        <div class="bubble" style="left: 80%; width: 40px; height: 40px; animation-duration: 6s;"></div>
+    </div>
+    <div class="container">
+        <div class="header-logo">PayEase</div>
+        <h2 id="form-title">Login</h2>
+        <form id="auth-form">
+            <div class="form-group" id="name-field" style="display: none;">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+            <button type="submit" class="btn">Login</button>
+        </form>
+        <p id="toggle-text">Don't have an account? <span class="toggle-link" onclick="toggleForm()">Register here</span></p>
+    </div>
+    <script>
+        function toggleForm() {
+            const formTitle = document.getElementById("form-title");
+            const nameField = document.getElementById("name-field");
+            const authForm = document.getElementById("auth-form");
+            const submitBtn = authForm.querySelector("button");
+            const toggleText = document.getElementById("toggle-text");
+            
+            if (formTitle.textContent === "Login") {
+                formTitle.textContent = "Register";
+                nameField.style.display = "block";
+                submitBtn.textContent = "Register";
+                toggleText.innerHTML = "Already have an account? <span class='toggle-link' onclick='toggleForm()'>Login here</span>";
+            } else {
+                formTitle.textContent = "Login";
+                nameField.style.display = "none";
+                submitBtn.textContent = "Login";
+                toggleText.innerHTML = "Don't have an account? <span class='toggle-link' onclick='toggleForm()'>Register here</span>";
+            }
+        }
+    </script>
+</body>
+</html>
+
